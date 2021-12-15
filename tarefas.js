@@ -45,3 +45,17 @@ btnAddTarefa.addEventListener('click', (e) => {
     nomeNovaTarefaEl.value = '';
     nomeNovaTarefaEl.focus();
 });
+
+let filtroCategoriaEl = document.querySelector('#filtro-de-categoria');
+
+filtroCategoriaEl.addEventListener('click', (e) => {
+    let tarefaNode = document.querySelectorAll('#lista-tarefas > li');
+    for (tarefa of tarefaNode) {
+        if(e.currentTarget.value === '' || tarefa.classList.contains(`categoria-${e.currentTarget.value}`)){
+            tarefa.classList.remove('retido-no-filtro');
+        }else{
+            tarefa.classList.add('retido-no-filtro');
+        }
+    }
+
+});
