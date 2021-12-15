@@ -35,6 +35,7 @@ function insereTarefaNaPagina(tarefa) {
     listaTarefas.appendChild(tarefaEl);
     tarefaEl.addEventListener('click', (e) => {
         e.currentTarget.classList.toggle('marcado');
+        tarefa.realizada = !tarefa.realizada;
     });
 }
 
