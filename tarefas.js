@@ -30,9 +30,9 @@ for (tarefa of tarefas) {
 }
 
 let btnAddTarefa = document.querySelector('#incluir-nova-tarefa');
+let nomeNovaTarefaEl = document.querySelector('#nova-tarefa-nome');
 
-btnAddTarefa.addEventListener('click', (e) => {
-    let nomeNovaTarefaEl = document.querySelector('#nova-tarefa-nome');
+function addTarefa(){
     let categoriaNovaTarefaEl = document.querySelector('#nova-tarefa-categoria');
     let tarefa = {
         nome: nomeNovaTarefaEl.value,
@@ -44,7 +44,9 @@ btnAddTarefa.addEventListener('click', (e) => {
     insereTarefaNaPagina(tarefa);
     nomeNovaTarefaEl.value = '';
     nomeNovaTarefaEl.focus();
-});
+}
+
+btnAddTarefa.addEventListener('click', addTarefa);
 
 let filtroCategoriaEl = document.querySelector('#filtro-de-categoria');
 
@@ -58,4 +60,10 @@ filtroCategoriaEl.addEventListener('click', (e) => {
         }
     }
 
+});
+
+nomeNovaTarefaEl.addEventListener('keyup', (e) => {
+    if(e.key === 'Enter'){
+        addTarefa();
+    }
 });
