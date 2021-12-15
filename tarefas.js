@@ -8,6 +8,16 @@ let tarefas = [
         nome: 'Escutar chimbinha',
         categoria: 'lazer',
         realizada: true
+    },
+    {
+        nome: 'Terminar TP Web',
+        categoria: 'estudos',
+        realizada: true
+    },
+    {
+        nome: 'Comprar café',
+        categoria: 'compras',
+        realizada: true
     }
 ];
 
@@ -23,6 +33,9 @@ function insereTarefaNaPagina(tarefa) {
     }
 
     listaTarefas.appendChild(tarefaEl);
+    tarefaEl.addEventListener('click', (e) => {
+        e.currentTarget.classList.toggle('marcado');
+    });
 }
 
 for (tarefa of tarefas) {
@@ -32,7 +45,7 @@ for (tarefa of tarefas) {
 let btnAddTarefa = document.querySelector('#incluir-nova-tarefa');
 let nomeNovaTarefaEl = document.querySelector('#nova-tarefa-nome');
 
-function addTarefa(){
+function addTarefa() {
     let categoriaNovaTarefaEl = document.querySelector('#nova-tarefa-categoria');
     let tarefa = {
         nome: nomeNovaTarefaEl.value,
@@ -53,9 +66,9 @@ let filtroCategoriaEl = document.querySelector('#filtro-de-categoria');
 filtroCategoriaEl.addEventListener('click', (e) => {
     let tarefaNode = document.querySelectorAll('#lista-tarefas > li');
     for (tarefa of tarefaNode) {
-        if(e.currentTarget.value === '' || tarefa.classList.contains(`categoria-${e.currentTarget.value}`)){
+        if (e.currentTarget.value === '' || tarefa.classList.contains(`categoria-${e.currentTarget.value}`)) {
             tarefa.classList.remove('retido-no-filtro');
-        }else{
+        } else {
             tarefa.classList.add('retido-no-filtro');
         }
     }
@@ -63,7 +76,7 @@ filtroCategoriaEl.addEventListener('click', (e) => {
 });
 
 nomeNovaTarefaEl.addEventListener('keyup', (e) => {
-    if(e.key === 'Enter'){
+    if (e.key === 'Enter') {
         addTarefa();
     }
 });
